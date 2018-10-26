@@ -33,16 +33,9 @@ This tool's default JDK search directories are "C:\Program Files\Java\" and "C:\
 1. Start command prompt with administrator authority.
 2. jhc [option]
 
+	- `jhc`  Change "JAVA_HOME" to the selected JDK.
 
-   jhc
-
-   	Change "JAVA_HOME" to the selected JDK.
-
-
-
-   jhc update
-
-   	Please use it when new JDK is installed or existing JDK is uninstalled.
+	- `jhc update`  Please use it when new JDK is installed or existing JDK is uninstalled.
 
 
 
