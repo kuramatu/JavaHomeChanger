@@ -1,6 +1,6 @@
 # JavaHomeChanger (JHC)
 
-This tool change system-environment-variable "JAVA_HOME" for WindowsOS.
+This tool change system-environment-variable "JAVA_HOME" for Windows OS.
 
 This tool requires administrator authority.
 
@@ -16,7 +16,7 @@ This tool's default JDK search directories are "C:\Program Files\Java\" and "C:\
 
 ## Install
 
-1. Download "jhc.bat" to any folder.
+1. Download "jhc.bat" and "mjl.bat" to any folder. (Put the two files in the same folder)
 
 2. Please add "JHC_HOME" to "PATH" of user environment variable or system environment variable.
 
@@ -24,7 +24,7 @@ This tool's default JDK search directories are "C:\Program Files\Java\" and "C:\
 
 **Notice**
 
- If you do not add "% JAVA_HOME% \ bin" to the system environment variable "PATH", please add it.
+ If you do not add "%JAVA_HOME%\bin" to the system environment variable "PATH" or the user environment variable "PATH", please add it.
 
 
 
@@ -33,9 +33,9 @@ This tool's default JDK search directories are "C:\Program Files\Java\" and "C:\
 1. Start command prompt with administrator authority.
 2. jhc [option]
 
-	- `jhc`  Change "JAVA_HOME" to the selected JDK.
+	- `jhc`  Change the environment variable "JAVA_HOME" to the selected JDK.
 
-	- `jhc update`  Please use it when new JDK is installed or existing JDK is uninstalled.
+	- `jhc update`  Use this when installing a new JDK, uninstalling an existing JDK, or customizing the "SearchTargetDirectories.conf" file.
 
 
 
@@ -43,7 +43,7 @@ This tool's default JDK search directories are "C:\Program Files\Java\" and "C:\
 
 If JDK is installed other than the default search directory, please add the directory you want to search to the "SearchTargetDirectories.conf" file.
 
-The "SearchTargetDirectories.conf" file is located in "JHC_HOME \ conf \".
+The "SearchTargetDirectories.conf" file is located in "JHC_HOME\conf\".
 
 
 
