@@ -23,19 +23,19 @@ exit /b
 
 
 :makeSearchTargetDirectoriesConfFile
-if not exist %MAKE_JDK_LIST_HOME%conf (
-  mkdir %MAKE_JDK_LIST_HOME%conf
+if not exist "%MAKE_JDK_LIST_HOME%conf" (
+  mkdir "%MAKE_JDK_LIST_HOME%conf"
 )
-if not exist %MAKE_JDK_LIST_HOME%conf\SearchTargetDirectories.conf (
-  echo C:\Program Files^\Java^\>> %MAKE_JDK_LIST_HOME%conf\SearchTargetDirectories.conf
-  echo C:\Program Files ^(x86^)^\Java^\>> %MAKE_JDK_LIST_HOME%conf\SearchTargetDirectories.conf
+if not exist "%MAKE_JDK_LIST_HOME%conf\SearchTargetDirectories.conf" (
+  echo C:\Program Files^\Java^\>> "%MAKE_JDK_LIST_HOME%conf\SearchTargetDirectories.conf"
+  echo C:\Program Files ^(x86^)^\Java^\>> "%MAKE_JDK_LIST_HOME%conf\SearchTargetDirectories.conf"
 )
 exit /b
 
 
 :deleteJDKList
-if exist %MAKE_JDK_LIST_HOME%conf\JDKList.conf (
-  del %MAKE_JDK_LIST_HOME%conf\JDKList.conf
+if exist "%MAKE_JDK_LIST_HOME%conf\JDKList.conf" (
+  del "%MAKE_JDK_LIST_HOME%conf\JDKList.conf"
 )
 exit /b
 
@@ -60,16 +60,17 @@ call :getJavacExeFileFullPath
 set REPLACE_TARGET=\bin\javac.exe
 for /f "delims=" %%a in (%MAKE_JDK_LIST_HOME%conf\collect_javac_fullpath.tmp) do (
   set JDK_DIRECTORY_NAME=%%a
-  echo !JDK_DIRECTORY_NAME:%REPLACE_TARGET%=!>> %MAKE_JDK_LIST_HOME%conf\collect_jdk_directories.tmp 2> nul
+  echo !JDK_DIRECTORY_NAME:%REPLACE_TARGET%=!>> "%MAKE_JDK_LIST_HOME%conf\collect_jdk_directories.tmp" 2> nul
 )
 exit /b
 
 
 :getJavacExeFileFullPath
 if not exist "!SEARCH_TARGET_DIRECTORY!" (
+  echo;| findstr "javac.exe" > "%MAKE_JDK_LIST_HOME%conf\collect_javac_fullpath.tmp" 2> nul
   exit /b
 )
-dir /b /o:n /s "!SEARCH_TARGET_DIRECTORY!" | findstr "javac.exe" > %MAKE_JDK_LIST_HOME%conf\collect_javac_fullpath.tmp 2> nul
+dir /b /o:n /s "!SEARCH_TARGET_DIRECTORY!" | findstr "javac.exe" > "%MAKE_JDK_LIST_HOME%conf\collect_javac_fullpath.tmp" 2> nul
 exit /b
 
 
@@ -81,7 +82,7 @@ exit /b
 
 
 :printJavaVersionInfomationToTemporaryFile
-"!JDK_DIRECTORY_FULLPATH!\bin\java.exe" -version 2> %MAKE_JDK_LIST_HOME%conf\java_version.tmp
+"!JDK_DIRECTORY_FULLPATH!\bin\java.exe" -version 2> "%MAKE_JDK_LIST_HOME%conf\java_version.tmp"
 exit /b
 
 
@@ -112,12 +113,12 @@ exit /b
 
 
 :isOpenJDK
-find "openjdk" %MAKE_JDK_LIST_HOME%conf\java_version.tmp > nul
+find "openjdk" "%MAKE_JDK_LIST_HOME%conf\java_version.tmp" > nul
 exit /b
 
 
 :isAdoptOpenJDK
-find "AdoptOpenJDK" %MAKE_JDK_LIST_HOME%conf\java_version.tmp > nul
+find "AdoptOpenJDK" "%MAKE_JDK_LIST_HOME%conf\java_version.tmp" > nul
 exit /b
 
 
@@ -131,17 +132,17 @@ exit /b
 
 
 :is64BitVersion
-find "64-Bit" %MAKE_JDK_LIST_HOME%conf\java_version.tmp > nul
+find "64-Bit" "%MAKE_JDK_LIST_HOME%conf\java_version.tmp" > nul
 exit /b
 
 
 :addJDKList
-echo !PRIMARY_KEY!,!JAVA_BIT!,!JDK_VERSION!,!JDK_DIRECTORY_FULLPATH!>>%MAKE_JDK_LIST_HOME%conf\JDKList.conf
+echo !PRIMARY_KEY!,!JAVA_BIT!,!JDK_VERSION!,!JDK_DIRECTORY_FULLPATH!>>"%MAKE_JDK_LIST_HOME%conf\JDKList.conf"
 exit /b
 
 
 :deleteTemporaryFiles
-del %MAKE_JDK_LIST_HOME%conf\*.tmp
+del "%MAKE_JDK_LIST_HOME%conf\*.tmp"
 exit /b
 
 endlocal
